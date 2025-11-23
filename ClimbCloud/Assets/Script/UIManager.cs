@@ -26,7 +26,6 @@ public class UIManager : MonoBehaviour
 
     public void OnLoginButtonClicked()
     {
-        Debug.Log("1. UIManager: 로그인 버튼 클릭 감지."); 
         
         string id = idInputField.text;
         string pwd = passwordInputField.text;
@@ -39,8 +38,6 @@ public class UIManager : MonoBehaviour
 
         if (RankManager.Instance != null)
         {
-            Debug.Log($"2. UIManager: 입력 값 유효함. ID: {id}"); 
-            Debug.Log("3. UIManager: RankManager에게 DB 요청 전송."); 
 
             // DB 통신 요청
             RankManager.Instance.LoginUser(id, pwd);
@@ -48,7 +45,6 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("UIManager: [B] RankManager.Instance가 Null입니다. 싱글톤 오류.");
             UpdateStatusText("RankManager가 준비되지 않았습니다.", false);
         }
     }
@@ -56,7 +52,6 @@ public class UIManager : MonoBehaviour
     // 회원가입 버튼의 OnClick 이벤트에 연결할 함수
     public void OnRegisterButtonClicked()
     {
-        Debug.Log("1. UIManager: 회원가입 버튼 클릭 감지."); 
         
         string id = idInputField.text;
         string pwd = passwordInputField.text;
@@ -69,23 +64,20 @@ public class UIManager : MonoBehaviour
         
         if (RankManager.Instance != null)
         {
-            Debug.Log($"2. UIManager: 입력 값 유효함. ID: {id}"); 
-            Debug.Log("3. UIManager: RankManager에게 DB 요청 전송."); 
-
             // DB 통신 요청
             RankManager.Instance.RegisterUser(id, pwd);
             statusText.text = "회원가입 요청 중...";
+
+            statusText.text = "회원가입 성공!";
         }
         else
         {
-             Debug.LogError("UIManager: [B] RankManager.Instance가 Null입니다. 싱글톤 오류.");
              UpdateStatusText("RankManager가 준비되지 않았습니다.", false);
         }
     }
     
     public void OnLoginSuccess()
     {
-        Debug.Log("9. UIManager: 로그인 성공 콜백 수신. 씬 전환 준비 중."); 
 
         UpdateStatusText($"로그인 성공! ({RankManager.Instance.CurrentLoggedInUser})", true);
         

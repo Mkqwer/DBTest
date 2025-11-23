@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class RankManager : MonoBehaviour
 {
     private const string ConnectionString = 
-        "Server=localhost;" + 
-        "Database=my_rank_game;" + 
-        "Uid=root;" +         
-        "Pwd=Password;";
-    
+        "Server=localhost;" +         // MySQL 서버 주소 외부서버 사용시 IP값 입력
+        "Database=my_rank_game;" +    // 데이터베이스 이름
+        "Uid=root;" +                 // MySQL 사용자 아이디
+        "Pwd=Password;";             // MySQL 사용자 비밀번호
+
     // 현재 로그인된 유저의 닉네임을 저장
     public string CurrentLoggedInUser { get; private set; } 
     public bool IsLoggedIn => !string.IsNullOrEmpty(CurrentLoggedInUser);
